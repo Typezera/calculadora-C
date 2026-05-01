@@ -4,7 +4,7 @@
 #include "calc_func.h"
 
 int main(){
-    printf("\x1b[33m Bem vindo a calculadora \x1b[0m \n");
+
 
     //variaveis utilizadas 
     int first_number, second_number,len, result;
@@ -42,6 +42,7 @@ int main(){
 
         }
         printf("\n");
+        printf("Para sair digite: q \n");
         scanf(" %c", &typeOperation);
         //------------------------------------------//
         //Chackagem do tipo da operação
@@ -67,7 +68,11 @@ int main(){
             }
             printf("O resultado da divisão: [%d / %d = %d]\n", first_number, second_number, result);
             break;
+        case 'q':
+            printf("Agradeço por usar nossa ferramenta horrível.");
+            return false;
         }
+
     }
     
     return 0;
