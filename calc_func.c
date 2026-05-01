@@ -18,7 +18,7 @@ int multiplication(int a, int b){
 int division(int a, int b){
     if (b == 0)
     {
-        printf("[ERROR] Possível divisão por zero, insira um valor valido.\n");
+        printf("\x1b[31m[ERROR] \x1b[0m Possível divisão por zero, insira um valor valido.\n");
         return -1;
     }
     return a / b;

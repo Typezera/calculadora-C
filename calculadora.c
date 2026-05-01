@@ -4,7 +4,7 @@
 #include "calc_func.h"
 
 int main(){
-    printf("Bem vindo a calculadora\n");
+    printf("\x1b[33m Bem vindo a calculadora \x1b[0m \n");
 
     //variaveis utilizadas 
     int first_number, second_number,len, result;
@@ -13,6 +13,15 @@ int main(){
     
     while (true)//entrada no loop
     {
+        printf("\033[1;32m");
+        printf("   _____      _            _           _                   _____             _   _ _ \n");
+        printf("  / ____|    | |          | |         | |                 |_   _|           | | (_) |\n");
+        printf("| |     __ _| | ___ _   _| | __ _  __| | ___  _ __ __ _    | |  _ __  _   _| |_ _| |\n");
+        printf("| |    / _` | |/ __| | | | |/ _` |/ _` |/ _ \\| '__/ _` |   | | | '_ \\| | | | __| | |\n");
+        printf("| |___| (_| | | (__| |_| | | (_| | (_| | (_) | | | (_| |  _| |_| | | | |_| | |_| | |\n");
+        printf(" \\_____\\__,_|_|\\___|\\__,_|_|\\__,_|\\__,_|\\___/|_|  \\__,_| |_____|_| |_|\\__,_|\\__|_|_|\n");
+        printf("\033[0m"); 
+
         printf("Informe o primeiro valor: ");
         scanf("%d", &first_number); //primeiro valor de entrada
 
@@ -51,28 +60,14 @@ int main(){
             printf("O resultado da multiplicação: [%d * %d = %d]\n", first_number, second_number, result);
             break;
         case '/':
-            result = division(first_number, second_number);
+            result = division(first_number, second_number); // se o retorno for -1 o usuário tentou dividir por 0
             if (result == -1)
             {
                 continue;
             }
             printf("O resultado da divisão: [%d / %d = %d]\n", first_number, second_number, result);
             break;
-        default:
-            break;
         }
-        //------------------------------------------//
-        
-        // printf("digite o primeiro valor: \n");
-        // scanf("%d", &first_number);
-    
-        // printf("Digte o segundo valor \n");
-        
-        // scanf("%d", &second_number);
-    
-        // result = first_number + second_number;
-    
-        // printf("A soma dos valores é: %d %d = %d ", first_number, second_number, result);
     }
     
     return 0;
