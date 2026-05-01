@@ -40,11 +40,23 @@ int main(){
         {
         case '+':
             result = sum(first_number, second_number); 
-            printf("O resultado da soma [%d + %d = %d]\n", first_number, second_number, result);
+            printf("O resultado da soma: [%d + %d = %d]\n", first_number, second_number, result);
             break;
         case '-':
             result = subtraction(first_number, second_number);
-            printf("O resultado da subtração [%d - %d = %d]\n", first_number, second_number, result);
+            printf("O resultado da subtração: [%d - %d = %d]\n", first_number, second_number, result);
+            break;
+        case '*':
+            result = multiplication(first_number, second_number);
+            printf("O resultado da multiplicação: [%d * %d = %d]\n", first_number, second_number, result);
+            break;
+        case '/':
+            result = division(first_number, second_number);
+            if (result == -1)
+            {
+                continue;
+            }
+            printf("O resultado da divisão: [%d / %d = %d]\n", first_number, second_number, result);
             break;
         default:
             break;
