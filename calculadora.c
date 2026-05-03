@@ -1,39 +1,49 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 #include "calc_func.h"
 
 int main(){
 
     printf("\033[1;32m");
-    printf("   _____      _            _           _                   _____             _   _ _ \n");
-    printf("  / ____|    | |          | |         | |                 |_   _|           | | (_) |\n");
-    printf("| |     __ _| | ___ _   _| | __ _  __| | ___  _ __ __ _    | |  _ __  _   _| |_ _| |\n");
-    printf("| |    / _` | |/ __| | | | |/ _` |/ _` |/ _ \\| '__/ _` |   | | | '_ \\| | | | __| | |\n");
-    printf("| |___| (_| | | (__| |_| | | (_| | (_| | (_) | | | (_| |  _| |_| | | | |_| | |_| | |\n");
-    printf(" \\_____\\__,_|_|\\___|\\__,_|_|\\__,_|\\__,_|\\___/|_|  \\__,_| |_____|_| |_|\\__,_|\\__|_|_|\n");
+    printf("   _____      _            _           _                  \n");
+    printf("  / ____|    | |          | |         | |                \n");
+    printf("| |     __ _| | ___ _   _| | __ _  __| | ___  _ __ __ _    \n");
+    printf("| |    / _` | |/ __| | | | |/ _` |/ _` |/ _ \\| '__/ _` |   \n");
+    printf("| |___| (_| | | (__| |_| | | (_| | (_| | (_) | | | (_| |  \n");
+    printf(" \\_____\\__,_|_|\\___|\\__,_|_|\\__,_|\\__,_|\\___/|_|  \n");
     printf("\033[0m"); 
 
     //variaveis utilizadas 
-    int first_number, second_number,len, result;
+    int first_number, second_number,len, result, number;
     char typeOperation;
+
+    //buffer de 100 bits para armazenar entrada do usuário tamanho 100 para ser uma margem segura.
+    char bufferEntry[100];
+    char bufferOperation[10];
+    char *end;
     //**/
     
     while (true)//entrada no loop
     {
-
-        printf("Informe o primeiro valor: ");
-        scanf("%d", &first_number); //primeiro valor de entrada
+        result = 0;
+        printf("Informe um número: ");
+        fgets(bufferEntry, sizeof(bufferEntry), stdin);
 
         printf("\n");
+        first_number = strtol(bufferEntry, NULL, 10); // converte de string para decimal
 
         printf("Informe o segundo valor: ");
-        scanf("%d", &second_number); //segundo valor de entrada
+        fgets(bufferEntry, sizeof(bufferEntry), stdin); //segundo valor de entrada
 
         printf("\n");
 
+        second_number = strtol(bufferEntry, NULL, 10);
+        
+
         char operation[] = {'+', '-', '*', '/'};
-        len = sizeof(operation)/sizeof(operation[0]); //cada int 4 byts * 5 = 20 / 5 = 4 resultado tamanho total do array;
+        len = sizeof(operation)/sizeof(operation[0]);
         
         printf("Escolha uma das 4 operações: \n");
         for (int i = 0; i < len; i++)
@@ -43,33 +53,32 @@ int main(){
         }
         printf("\n");
         printf("Para sair digite: q \n");
-        scanf(" %c", &typeOperation);
+        fgets(bufferOperation, sizeof(bufferOperation), stdin);
+        typeOperation = bufferOperation[0];
         //------------------------------------------//
         //Chackagem do tipo da operação
         switch (typeOperation)
         {
         case '+':
-            result = sum(first_number, second_number); 
+            sum(first_number, second_number, &result); 
             printf("O resultado da soma: [%d + %d = %d]\n", first_number, second_number, result);
             break;
         case '-':
-            result = subtraction(first_number, second_number);
+            subtraction(first_number, second_number, &result);
             printf("O resultado da subtração: [%d - %d = %d]\n", first_number, second_number, result);
             break;
         case '*':
-            result = multiplication(first_number, second_number);
+            multiplication(first_number, second_number, &result);
             printf("O resultado da multiplicação: [%d * %d = %d]\n", first_number, second_number, result);
             break;
-        case '/':
-            result = division(first_number, second_number); // se o retorno for -1 o usuário tentou dividir por 0
-            if (result == -1)
-            {
+        case '/': // se o retorno for -1 o usuário tentou dividir por 0
+            if (division(first_number, second_number, &result) == -1){
                 continue;
             }
             printf("O resultado da divisão: [%d / %d = %d]\n", first_number, second_number, result);
             break;
         case 'q':
-            printf("Agradeço por usar nossa ferramenta horrível.");
+            printf("Agradeço por usar nossa ferramenta.");
             return false;
         }
 
