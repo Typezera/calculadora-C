@@ -19,7 +19,7 @@ int main(){
     int first_number, second_number,len, result, number;
     char typeOperation;
 
-    //buffer de 100 bits para armazenar entrada do usuário tamanho 100 para ser uma margem segura.
+    //buffer de 100 byts para armazenar entrada do usuário tamanho 100 para ser uma margem segura.
     char bufferEntry[100];
     char bufferOperation[10];
     char *end;
